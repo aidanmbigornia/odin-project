@@ -1,0 +1,133 @@
+# The Odin Project (TOP)
+## Day 1
+
+### Key Concepts
+
+#### Asking Questions:
+- **"Do not ask to ask, just ask."**  
+  Get to the point when asking questions.
+
+#### Structuring Your Question:
+1. **What do you think the problem is?**
+2. **What exactly do you want to happen?**
+3. **What is actually happening?**
+4. **How did you get there?**
+5. **What have you tried so far?**
+
+---
+
+### Basic Linux CLI Commands:
+- **Recursive directory creation:**  
+  `mkdir -p test/test/test`
+
+- **List files recursively:**  
+  `ls -R`
+
+- **Word count (lines, words, characters):**  
+  `wc`
+
+- **Sort file contents:**  
+  `sort <filename>`
+
+- **Numeric sort:**  
+  `sort -n <filename>`
+
+- **Output the first `n` lines:**  
+  `head -n <number> <filename>`
+
+- **Output the last `n` lines:**  
+  `tail -n <number> <filename>`
+
+- **Pipe (`|`):**  
+  The vertical bar (`|`) between two commands sends the output of the left command as input to the right command.
+
+- **Cut (remove a part by delimiter):**  
+  `cut -d <delimiter> -f <field>`  
+  Example:  
+  `cut -d "," -f 2` extracts the second column in a comma-separated file.
+
+- **Count occurrences (like a hash map, but must sort first):**  
+  `sort | uniq -c`
+
+- **Remove repeating characters:**  
+  `tr -s <char>`
+
+- **Run a specific history command (`!n`):**  
+  `!495` runs line 495 from history.
+
+- **Run the last command (`!!`):**  
+  Runs the previous command executed.
+
+---
+
+### Loops
+
+#### For Loops (examples show loops from 0 to 9):
+- `for num in 0 1 2 3 4 5 6 7 8 9; do echo $num; done`
+- `for num in {0..9}; do echo $num; done`
+
+#### Nested For Loop:
+- `for file in NENE*A*; do for num in {0..1}; do echo $file-$num; done; done;`
+
+---
+
+### Variables:
+- `$1`, `$2`: Positional arguments passed in a script.  
+  Example: `bash middle.sh octane.pdb 15`  
+  `octane.pdb` is `$1`, and `15` is `$2`.
+
+- `$@`: All command-line arguments (equivalent to `$1`, `$2`, etc.).
+
+- **Debugging mode:**  
+  `bash -x <script.sh>`
+
+---
+
+### Grep (Search in Files):
+- Basic usage:  
+  `grep <word> <file>`
+
+- Common options:  
+  - `-w`: Search for whole words.  
+  - `-n`: Show line numbers.  
+  - `-i`: Case-insensitive search.  
+  - `-v`: Invert match (output lines that don't match).  
+  - `-r`: Recursive search.
+
+---
+
+### Find:
+- Search for files by name and type.  
+  `find . -type [d/f] -name <filename>`
+
+- Combine with other commands:  
+  `find . -name "*.txt" | wc -l`
+
+  This finds all `.txt` files and counts the total lines.
+
+---
+
+### Regex:
+- **Common Symbols:**
+  - `.`: Matches any character.
+  - `\d`: Matches any digit.
+  - `\w`: Matches word characters (letters, digits).
+  - `\s`: Matches spaces, tabs, or newlines.
+  - `^`: Anchors to the start of a line.
+  - `$`: Anchors to the end of a line.
+  - `\b`: Matches word boundaries.
+
+- **Examples:**
+  - `[ABC]`: Matches A, B, or C.
+  - `[A-Z]`: Matches any uppercase letter.
+  - `[A-Za-z]`: Matches any letter.
+  - `[A-Za-z0-9]`: Matches any letter or digit.
+
+- **Escaping special characters:**  
+  Use `\` before a special character (e.g., `\.com` matches `.com`).
+
+---
+
+### Regex Example:
+- `^[Oo]rgani.e\b`:  
+  Matches lines starting with either "Organi" or "organi" followed by any character and ending with a word boundary (e.g., "Organize", "organize").

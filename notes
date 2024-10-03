@@ -1,0 +1,87 @@
+THE ODIN PROJECT (TOP)
+day-1
+    do not ask to ask, but just ask.
+    []structuring your Question:
+        What do you think the problem is?
+        What exactly do you wa nt to happen?
+        What is actually happening?
+        How did you get there?
+        What have you tried so far?
+    []basic linux cli commands
+    -   (recursive create directory)    mkdir -p test/test/test
+    -   (list files recursive on the directory)    ls -R 
+    -   (word count | line word char)    wc
+    -   (sort)  sort <filename> 
+    -   (numeric sort) sort -n  <filename>
+    -   (output the first n of lines)   head -n <insert number> <filename>  
+    -   (output the last n of lines)    tail -n <insert number> <filename>  
+    -   The vertical bar, |, between the two commands is called a pipe. 
+        It tells the shell that we want to use the output of the 
+        command on the left as the input to the command on the right.
+    -   (cut or remove a part separate by <inssert char>)   cut -d
+            -d option to specify the comma as our delimiter character.
+            -f option to specify that we want to extract the second field (column)
+    -   (do count like hash map, but must be together so need sort first)   uniq -c
+            | sort | uniq -c
+    -   (remove repeating) tr -s <insert value/chars> 
+    -   (run the nth line of history) !n     - i.e. !495 runs line 495 of history
+    -   (runs last command like "UP ARROW + ENTER does") !!
+    
+    FOR LOOPS
+    samples all shows 0-9 loop
+    -    for num in 0 1 2 3 4 5 6 7 8 9; do echo $num; done
+    -    for num in {0..9}; do echo $num; done
+
+    NESTED FOR LOOP
+    sample
+    -    for file in NENE*A*; do for num in {0..1}; do echo $file-$num;done;done;
+
+    VARIABLES (adding "" helps in cases where argument needs/has space)
+    -   $1 $2   (variable arguments passed in script)   i.e.  bash middle.sh octane.pdb 15 
+        (octane.pdb is $1 and 15 is $2)
+    -   $@  (means all command line arguments)
+        ("$@" is special syntax and is equivalent to "$1" "$2" …)
+    
+    -x  (debugging mode) i.e. bash -x do-errors.sh NENE*A.txt
+    grep (search) i.e. grep <word> <file>          grep Tao haiku.txt
+        -w (word boundary; for example, normal search of the can show 'the' and 'thesis');
+        -n (line number);
+        -i (case insensitive);
+        -v (output lines that does not have; invert);
+        -r (recursive search);
+    find    While grep finds lines in files, the find command finds files themselves. Again, it has a lot of options;
+        -type [d,f]
+        -name <filename-with-extension>
+    As we said earlier, the command line’s power lies in combining tools. We’ve seen how to do that with pipes; let’s look at another technique. As we just saw, find . -name "*.txt" gives us a list of all text files in or below the current directory. How can we combine that with wc -l to count the lines in all those files?
+    When the shell executes this command, the first thing it does is run whatever is inside the $(). It then replaces the $() expression with that command’s output. Since the output of find is the three filenames ./writing/LittleWomen.txt, ./writing/haiku.txt, and ./numbers.txt, the shell constructs the command:
+
+BASH
+$ wc -l ./writing/LittleWomen.txt ./writing/haiku.txt ./numbers.txt
+
+The simplest way is to put the find command inside $():
+    
+    REGEX
+    We use the -E option and put the pattern in quotes to prevent the shell from trying to interpret it. (If the pattern contained a *, for example, the shell would try to expand it before running grep.) The ^ in the pattern anchors the match to the start of the line. The . matches a single character (just like ? in the shell), while the o matches an actual ‘o’.
+
+
+    Square brackets can be used to define a list or range of characters to be found. So:
+
+    [ABC] matches A or B or C.
+    [A-Z] matches any upper case letter.
+    [A-Za-z] matches any upper or lower case letter.
+    [A-Za-z0-9] matches any upper or lower case letter or any digit.
+    Then there are:
+
+    . matches any character.
+    \d matches any single digit.
+    \w matches any part of word character (equivalent to [A-Za-z0-9]).
+    \s matches any space, tab, or newline.
+    \ used to escape the following character when that character is a special character. So, for example, a regular expression that found .com would be \.com because . is a special character that matches any character.
+    ^ is an “anchor” which asserts the position at the start of the line. So what you put after the caret will only match if they are the first characters of a line. The caret is also known as a circumflex.
+    $ is an “anchor” which asserts the position at the end of the line. So what you put before it will only match if they are the last characters of a line.
+    \b asserts that the pattern must match at a word boundary. Putting this either side of a word stops the regular expression matching longer variants of words. So:
+    the regular expression mark will match not only mark but also find marking, market, unremarkable, and so on.
+    the regular expression \bword will match word, wordless, and wordlessly.
+    the regular expression comb\b will match comb and honeycomb but not combine.
+    the regular expression \brespect\b will match respect but not respectable or disrespectful.
+    So, what is ^[Oo]rgani.e\b going to match?
