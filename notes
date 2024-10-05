@@ -85,3 +85,9 @@ The simplest way is to put the find command inside $():
     the regular expression comb\b will match comb and honeycomb but not combine.
     the regular expression \brespect\b will match respect but not respectable or disrespectful.
     So, what is ^[Oo]rgani.e\b going to match?
+
+
+    HTML
+    start index.html
+    >   explorer.exe index.html
+    >   wslview index.html
